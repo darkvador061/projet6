@@ -8,12 +8,14 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize")
 const session = require('cookie-session')
 
+
+
 const app = express()
 
 
 require("dotenv").config() //import de dotenv pour gérer des variables dissimulées
 
-app.use(helmet()); //Import de helmet pour configurer de manière appropriée des en-têtes HTTP
+app.use(helmet()) //Import de helmet pour configurer de manière appropriée des en-têtes HTTP
 app.use(mongoSanitize()) //Import de mongo-sanitize pour empecher les attaques par injection
 
 

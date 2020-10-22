@@ -6,12 +6,14 @@ const User = require("../models/User")
 require("dotenv").config()
 
 exports.signup = (req, res, next) => {
+
   const maskedMail = maskData.maskEmail2(req.body.email); // masquage de l'adresse mail
+ 
    bcrypt.hash(req.body.password, 10)
    .then(hash => {
        const user = new User({
            email:maskedMail, // masquage de l'adresse mail
-           password: hash
+           password:hash 
        })
        user.save()
        .then(() => res.status(201).json({message:"Utilisateur crée !!"}))
@@ -22,7 +24,9 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
+
   const maskedMail = maskData.maskEmail2(req.body.email);
+  
     User.findOne({ email: maskedMail }) // masquage de l'adresse mail
       .then(user => {
         if (!user) {
